@@ -8,8 +8,21 @@ $arrayData = explode("\n",$inputData);
 //size of array (should be 1000 lines in dataset)
 echo(sizeof($arrayData));
 var_dump($arrayData[0]);
+var_dump($arrayData[1]);
+var_dump($arrayData[2]);
 
+//function
+function reduceZero($item) {
+     if($item == 0) {
+         return true;
+     }
+     return false;
+}
 //variables
+$oxygenBinary = 001100111001;
+$oxygenDecimal = 825;
+$co2Rating = 110100101111;
+$co2Decimal = 3375;
 $newArray = array();
 $totalArray = array();
 $counter = 0;
@@ -32,10 +45,25 @@ for($i=0;$i<12;$i++) {
         $counter += intval($value);
     }
 
+    if($zero <= $one) {
+        foreach ($arrayData as $item => $key) {
+            $value = substr($key, $i, 1);
+            if($value == 1) {
+                unset($arrayData[$item]);
+            }
+        }
+    } elseif ($one < $zero) {
+        foreach ($arrayData as $item => $key) {
+            $value = substr($key, $i, 1);
+            if($value == 0) {
+                unset($arrayData[$item]);
+            }
+        }
+    }
+    var_dump($arrayData);
     $totalArray[$i] = $counter;
-    echo("$counter"." \r\n");
-    $counter = 0;
 }
+
 
 var_dump($totalArray);
 echo(sizeof($newArray));
