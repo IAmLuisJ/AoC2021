@@ -58,8 +58,8 @@ foreach($numbersCalled as $draw => $numberCalled) {
                     $rowWin = false;
                 }
                 $columnWin = true;
-                for($i =0; $i<4;$i++) {
-                    if ($deck[$boardKey][$i][$numberKey] != "X") {
+                for($i =0; $i<5;$i++) {
+                    if ($deck[$boardKey][$i][$rowKey] != "X") {
                         //columnWin
                         $columnWin = false;
                     }
@@ -70,13 +70,14 @@ foreach($numbersCalled as $draw => $numberCalled) {
                 echo("Column win, board: $boardKey <br>");
 
                 //sum of all numbers on the board that were not called
-                foreach($deck[$boardKey] as $check) {
+                foreach($deck[$boardKey] as $check1) {
                    //var_dump($check);
-                    $sum += array_sum($check);
+                    $sum += array_sum($check1);
                 }
                 $score = $sum * $numberCalled;
+                var_dump($deck);
                 unset($deck[$boardKey]);
-                echo("Sum is $sum and number called is $numberCalled");
+                echo("Sum is $sum and number called is $numberCalled <br>");
 //                var_dump($score);
 //                var_dump($draw);
 //                var_dump($numberCalled);
@@ -91,10 +92,10 @@ foreach($numbersCalled as $draw => $numberCalled) {
                 $rowWin=false;
                 //sum of all numbers on the board that were not called
                 foreach($deck[$boardKey] as $check) {
-                    var_dump($check);
+                   // var_dump($check);
                     $sum += array_sum($check);
                 }
-                echo("Sum is $sum and number called is $numberCalled");
+                echo("Sum is $sum and number called is $numberCalled <br>");
               //  var_dump($sum);
                 $score = $sum * $numberCalled;
                 var_dump($score);
@@ -115,6 +116,7 @@ foreach($numbersCalled as $draw => $numberCalled) {
     //check if board has a complete column
 }
 //boards
+var_dump($deck);
 
  ?>
 
