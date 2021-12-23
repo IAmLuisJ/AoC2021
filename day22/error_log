@@ -1,0 +1,4 @@
+[22-Dec-2021 18:03:05 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 4096 bytes) in /home/z9zvq27ac4r7/public_html/projects/AoC/day22/index.php on line 37
+[22-Dec-2021 18:03:05 UTC] PHP Stack trace:
+[22-Dec-2021 18:03:05 UTC] PHP   1. {main}() /home/z9zvq27ac4r7/public_html/projects/AoC/day22/index.php:0
+[22-Dec-2021 18:03:05 UTC] PHP   2. json_encode($value = ...) /home/z9zvq27ac4r7/public_html/projects/AoC/day22/index.php:37
