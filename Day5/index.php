@@ -29,8 +29,8 @@ foreach($arrayData as $key => $value) {
     //x1, y1 -> x2 , y2
    echo("<br>The line is $x1 , $y1 -> $x2, $y2");
    //dont assume x2 > x1
-    $range = range($x1, $x2);
-    foreach($range as $point) {
+    $xRange = range($x1, $x2);
+    foreach($xRange as $point) {
        // echo(" <br> point [$point][$y1] ");
         if($y1 == $y2) {
                 echo(" <br> line [$point][$y1] ");
@@ -39,8 +39,8 @@ foreach($arrayData as $key => $value) {
                 if($cache[$key] == 2) {$counter++;echo("overlap");}
             }
     }
-    $yrange = range($y1, $y2);
-    foreach ($yrange as $point2) {
+    $yRange = range($y1, $y2);
+    foreach ($yRange as $point2) {
         if($x1 == $x2) {
             echo(" <br> line [$x1][$point2] ");
             $key = json_encode([$x1,$point2]);
@@ -49,21 +49,23 @@ foreach($arrayData as $key => $value) {
         }
         echo(" <br> point [$x1][$point2] ");
     }
-//    for($x = $x1; $x <= $x2; $x++) {
-//        for($y = $y1; $y <= $y2; $y++) {
-//            echo(" <br> point [$x][$y] ");
-//            if($x1 == $x2 || $y1 == $y2){
-//                echo(" <br> line [$x][$y] ");
-//                $key = json_encode([$x,$y]);
-//                $cache[$key]++;
-//                if($cache[$key] >= 2) {$counter++;echo("overlap");}
-//            }
-//        }
-//    }
-//    var_dump($cache);
-//    exit();
+    //check for diagonal lines
+    $xlength = count($xRange);
+    $ylength = count($yRange);
+    if ($xlength == $ylength) {
+        echo("<br>line is diagonal");
+        $yCount = 0;
+        $yStart = $yRange[0];
+        foreach($xRange as $xVal) {
+           // echo(" <br> line [$xVal]$yRange[$yCount] ");
+            $key = json_encode([$xVal,$yRange[$yCount]]);
+            $yCount++;
+            $cache[$key]++;
+            if($cache[$key] == 2) {$counter++;echo("overlap");}
+        }
+    }
 }
-var_dump($cache);
+
 echo("overlaps = $counter");
 ?>
 <!DOCTYPE html>
